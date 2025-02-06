@@ -2,7 +2,6 @@ let gameState = new Array(9).fill("_");
 let currentPlayer = 1;
 let gameEnded = false;
 
-// tion to check game state
 function score(gameState, player) {
   const winningPositions = [
     [0, 1, 2],
@@ -32,14 +31,14 @@ function score(gameState, player) {
   });
 
   if (hasPlayerWon) {
-    return { state: "finalized", value: 10 };
+    return { state: "finalized", value: 10, name: "win" };
   } else if (hasPlayerLost) {
-    return { state: "finalized", value: -10 };
+    return { state: "finalized", value: -10, name: "loss" };
   } else if (gameState.every((cell) => cell !== "_")) {
-    return { state: "finalized", value: -3 };
+    return { state: "finalized", value: -3, name: "tie" };
   }
 
-  return { state: "stillGoing", value: 0 };
+  return { state: "stillGoing", value: 0, name: "none" };
 }
 
 function show(position, player) {
