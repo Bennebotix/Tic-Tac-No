@@ -42,6 +42,8 @@ class Bot {
         this.bud = this.optScore.state == "finalized";
 
         if (!this.bud && this.depth < this.parent.maxDepth) this.fill();
+
+        this.a = this.score;
       }
 
       fill() {
@@ -64,13 +66,21 @@ class Bot {
       }
 
       get score() {
-        if (!this.bud) {
-          let score = this.children
-            .map((c) => c.score)
-            .reduce((a, c) => a + c, 0);
-          return score ? score : score;
+        let looseNextRound = this.children.some((child) => {
+          return child.optScore.name == "loss";
+        });
+
+        if (this.depth == 1 && looseNextRound) {
+          return -Infinity;
         } else {
-          return this.optScore.value / this.depth ** 2;
+          if (!this.bud) {
+            let score = this.children
+              .map((c) => c.score)
+              .reduce((a, c) => a + c, 0);
+            return score ? score : score;
+          } else {
+            return this.optScore.value / this.depth ** 2;
+          }
         }
       }
     };
@@ -89,6 +99,8 @@ class Bot {
 
     for (let i = 0; i < moves.length; i++) {
       let state = new this.state(moves[i], 1, 1.1, this.gameState, this);
+
+      console.log(state);
 
       if (state.score > max) {
         move = state;
