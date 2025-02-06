@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="apple-touch-icon" href="./images/icon512_maskable.png" />
+    <link rel="apple-touch-icon" href="./images/icon512_roounded.png" />
+    <link rel="icon" href="./images/icon512_maskable.png?" type="image/png" />
+    <link
+      rel="shortcut icon"
+      href="./images/icon512_maskable.png?"
+      type="image/png"
+    />
+    <meta name="apple-mobile-web-app-status-bar" content="black" />
+    <meta name="theme-color" content="black" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic Tac Toe</title>
+    <style>
+      * {
+        font-family: "Courier New";
+        font-weight: bold;
+        color: white;
+        background-color: black;
+      }
+
+      * :not(.row, .cell, .cell > span) {
+        margin: 0px;
+        border: none;
+        padding: 0px;
+      }
+
+      * :not(#board, .row, .cell, .cell > span) {
+        width: 100dvw;
+        height: 100dvh;
+      }
+
+      #board {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 306px;
+        display: block;
+        border: 1px solid white;
+      }
+
+      .row {
+        display: block;
+      }
+
+      .cell {
+        width: 100px;
+        height: 100px;
+        border: 1px solid white;
+        display: inline-block;
+        font-size: 2em;
+      }
+
+      .cell > span {
+        display: block;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: fit-content;
+        background-color: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="board">
+      <div class="row"></div>
+      <div class="row"></div>
+      <div class="row"></div>
+    </div>
+    <script src="./script.js"></script>
+    <script src="./bot.js"></script>
+  </body>
+</html>
